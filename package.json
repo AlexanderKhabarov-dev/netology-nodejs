@@ -1,0 +1,8 @@
+{
+  "name": "netology-nodejs",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "git@github.com:AlexanderKhabarov-dev/netology-nodejs.git",
+  "author": "Alexander Khabarov <sanyaklirik@gmail.com>",
+  "license": "MIT"
+}
