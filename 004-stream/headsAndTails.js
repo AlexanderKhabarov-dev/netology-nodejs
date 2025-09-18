@@ -13,6 +13,8 @@ const __dirname = path.dirname(__filename)
 const HEADS_NUM = 1
 const TAILS_NUM = 2
 
+const LOGS_DIR_NAME = 'logs'
+
 const ANSWER_TEXT = {
   1: 'Орёл',
   2: 'Решка'
@@ -32,6 +34,15 @@ const handleAppendFile = ({ filePath, content }) => {
 }
 
 const handleCreateFile = ({ filePath, content }) => {
+  const dirPath = path.join(__dirname, LOGS_DIR_NAME)
+
+  fs.mkdir(dirPath, { recursive: true }, (err) => {
+    if (err) {
+      console.error('Ошибка создания директории:', err)
+      return
+    }
+  })
+  
   fs.writeFile(filePath, content, (err) => {
     if (err) {
       console.error('Ошибка при создании файла:', err)
@@ -59,7 +70,7 @@ const parseFile = (content) => {
 }
 
 const handleReadFile = (fileName) => {
-  const filePath = path.join(__dirname, 'logs', fileName)
+  const filePath = path.join(__dirname, LOGS_DIR_NAME, fileName)
 
   fs.readFile(filePath, 'utf8', (err, data) => {
     if (err) {
@@ -78,7 +89,7 @@ const handleReadFile = (fileName) => {
 
 const handleCreateFileFromReadline = ({ name, content, extension = 'txt'}) => {
   const fileName = `${name}.${extension}`
-  const filePath = path.join(__dirname, 'logs', fileName) 
+  const filePath = path.join(__dirname, LOGS_DIR_NAME, fileName) 
 
   const isFileExist = fs.existsSync(filePath)
 
