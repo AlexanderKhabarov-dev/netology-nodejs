@@ -42,7 +42,7 @@ const handleCreateFile = ({ filePath, content }) => {
       return
     }
   })
-  
+
   fs.writeFile(filePath, content, (err) => {
     if (err) {
       console.error('Ошибка при создании файла:', err)
@@ -105,14 +105,14 @@ const rl = readline.createInterface({
   output: process.stdout
 })
 
-const ask = () => {
+const startCommand = () => {
   rl.question(`Орёл или решка? \n${HEADS_NUM} — Орёл \n${TAILS_NUM} — Решка \n----------\n`, (answer) => {
     const guess = Number(answer.trim())
     const isValidNum = guess === HEADS_NUM || guess === TAILS_NUM
 
     if (!isValidNum) {
       console.log('Пожалуйста, введите число 1 или 2.')
-      ask()
+      startCommand()
       return
     }
 
@@ -131,22 +131,23 @@ const ask = () => {
     })
   })
 }
+ 
+const statsCommand = ({ fileName }) => {
+  if (!fileName) {
+    console.log('Введите имя файла.') 
+    rl.close()
+  }
+
+  handleReadFile(fileName)
+  rl.close()
+}
 
 yargs(hideBin(process.argv))
-  .command('start', 'Начать игру', ask)
+  .command('start', 'Начать игру', startCommand)
   .command('stats', 'Показать статистику игры', (yargs) => yargs.option('fileName', {
     type: 'string',
     describe: 'Имя файла',
-  }), 
-  ({ fileName }) => {
-    if (!fileName) {
-      console.log('Введите имя файла.') 
-      rl.close()
-    }
-
-    handleReadFile(fileName)
-    rl.close()
-  })
+  }), statsCommand)
   .help()
   .parse()
 
