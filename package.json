@@ -8,7 +8,8 @@
   "license": "MIT",
   "bin": {
     "current": "./002-console/current.js",
-    "guess": "./002-console/guess.js"
+    "guess": "./002-console/guess.js",
+    "headsAndTails": "./004-stream/headsAndTails.js"
   },
   "dependencies": {
     "readline": "^1.3.0",
