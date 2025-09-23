@@ -1,14 +1,13 @@
 #!/usr/bin/env node
-import dotenv from 'dotenv'
 import readline from 'node:readline'
 import process from 'node:process'
 import yargs from 'yargs'
 import { hideBin } from 'yargs/helpers'
 
-dotenv.config({ path: '.env' })
+import { API_YANDEX_WEATHER, API_YANDEX_GEOCODER } from './config.js'
 
 const headers = {
-  'X-Yandex-Weather-Key': process.env.API_YANDEX_WEATHER
+  'X-Yandex-Weather-Key': API_YANDEX_WEATHER
 }
 
 const windDirectionDescriptions = {
@@ -25,7 +24,7 @@ const windDirectionDescriptions = {
 
 const getGeoCoordinatesFromAddress = async (address) => {
   const encodedAddress = encodeURIComponent(address)
-  const url = `https://geocode-maps.yandex.ru/v1/?apikey=${process.env.API_YANDEX_GEOCODER}&geocode=${encodedAddress}&format=json`
+  const url = `https://geocode-maps.yandex.ru/v1/?apikey=${API_YANDEX_GEOCODER}&geocode=${encodedAddress}&format=json`
 
   const res = await fetch(url, { headers })
   const data = await res.json()

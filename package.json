@@ -3,18 +3,30 @@
   "version": "1.0.0",
   "type": "module",
   "main": "index.js",
-  "repository": "git@github.com:AlexanderKhabarov-dev/netology-nodejs.git",
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/AlexanderKhabarov-dev/netology-nodejs.git"
+  },
   "author": "Alexander Khabarov <sanyaklirik@gmail.com>",
   "license": "MIT",
   "bin": {
-    "current": "./002-console/current.js",
-    "guess": "./002-console/guess.js",
-    "headsAndTails": "./004-stream/headsAndTails.js",
-    "weather": "./005-http/weather.js"
+    "current": "002-console/current.js",
+    "guess": "002-console/guess.js",
+    "headsAndTails": "004-stream/headsAndTails.js",
+    "weather": "005-http/weather.js"
   },
   "dependencies": {
     "dotenv": "^17.2.2",
     "readline": "^1.3.0",
     "yargs": "^18.0.0"
-  }
+  },
+  "description": "netology",
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "bugs": {
+    "url": "https://github.com/AlexanderKhabarov-dev/netology-nodejs/issues"
+  },
+  "homepage": "https://github.com/AlexanderKhabarov-dev/netology-nodejs#readme"
 }
